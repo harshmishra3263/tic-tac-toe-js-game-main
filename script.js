@@ -14,23 +14,28 @@ const startGame = () => {
 }
 
 function boxClicked(e) {
-    const id = e.target.id
+    const id = e.target.id;
 
-    if(!spaces[id]){
-        spaces[id] = currentPlayer
-        e.target.innerText = currentPlayer
+    if (!spaces[id]) {
+        spaces[id] = currentPlayer;
+        e.target.innerText = currentPlayer;
 
-        if(playerHasWon() !==false){
-            playerText.innerHTML = `${currentPlayer} has won!`
-            let winning_blocks = playerHasWon()
+        if (playerHasWon() !== false) {
+            playerText.innerHTML = `${currentPlayer} has won!`;
+            let winning_blocks = playerHasWon();
 
-            winning_blocks.map( box => boxes[box].style.backgroundColor=winnerIndicator)
-            return
+            winning_blocks.map((box) => (boxes[box].style.backgroundColor = winnerIndicator));
+
+            // Delay the restart function by 3 seconds
+            setTimeout(restart, 3000);
+
+            return;
         }
 
-        currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
+        currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT;
     }
 }
+
 
 const winningCombos = [
     [0,1,2],
